@@ -29,7 +29,7 @@ export function Edit() {
     compileWorker = new CompileWorker();
 
     // Set up worker message handler
-    compileWorker.addEventListener('message', e => {
+    compileWorker.addEventListener('message', (e) => {
       if (e.data.type === 'compile-success') {
         self.postMessage({
           type: 'compile',

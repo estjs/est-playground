@@ -1,5 +1,5 @@
 import 'virtual:uno.css';
-import '@unocss/reset/tailwind.css'
+import '@unocss/reset/tailwind.css';
 import './style.css';
 
 import { createApp, onMount, watch } from 'essor';
@@ -20,19 +20,19 @@ function App() {
   });
 
   return (
-    <div class="h-100vh w-100vw flex flex-col of-hidden relative bg-[var(--vt-c-bg)] transition-colors duration-500">
+    <div class="relative h-100vh w-100vw flex flex-col of-hidden bg-[var(--vt-c-bg)] transition-colors duration-500">
       {/* Vite-style background glow */}
-      <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-[#646cff] blur-[120px] opacity-[0.05] dark:opacity-[0.1] pointer-events-none" />
-      <div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-[#42d392] blur-[120px] opacity-[0.05] dark:opacity-[0.1] pointer-events-none" />
+      <div class="pointer-events-none absolute h-[40%] w-[40%] bg-[#646cff] opacity-[0.05] blur-[120px] -left-[10%] -top-[10%] dark:opacity-[0.1]" />
+      <div class="pointer-events-none absolute h-[40%] w-[40%] bg-[#42d392] opacity-[0.05] blur-[120px] -bottom-[10%] -right-[10%] dark:opacity-[0.1]" />
 
       <Bar />
-      <div class="w-full flex flex-col md:flex-row flex-1 of-hidden relative z-1">
-        <div class="h-1/2 md:h-full w-full md:w-1/2 relative bg-base shadow-inner">
+      <div class="relative z-1 w-full flex flex-1 flex-col of-hidden md:flex-row">
+        <div class="bg-base relative h-1/2 w-full shadow-inner md:h-full md:w-1/2">
           <Edit />
-          <div class="absolute right-0 top-0 bottom-0 w-1px bg-base opacity-20 z-10 hidden md:block" />
-          <div class="absolute bottom-0 left-0 right-0 h-1px bg-base opacity-20 z-10 md:hidden" />
+          <div class="bg-base absolute bottom-0 right-0 top-0 z-10 hidden w-1px opacity-20 md:block" />
+          <div class="bg-base absolute bottom-0 left-0 right-0 z-10 h-1px opacity-20 md:hidden" />
         </div>
-        <div class="h-1/2 md:h-full w-full md:w-1/2">
+        <div class="h-1/2 w-full md:h-full md:w-1/2">
           <Preview />
         </div>
       </div>

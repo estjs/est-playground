@@ -4,7 +4,7 @@ export function getImportMapConfig(version: string) {
   const isLocal = version === 'local';
   return {
     // Point to local files directly when running in development
-    essor:
+    'essor':
       isLocal && isDev
         ? new URL('../../../essor/packages/core/dist/essor.esm.js', import.meta.url).href
         : `https://esm.sh/essor@${version}`,

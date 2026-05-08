@@ -1,6 +1,6 @@
 import { transform } from '@babel/standalone';
 import LocalBabelPlugin from 'babel-plugin-essor';
-
+import { normalizeCompileMode } from './compileMode';
 interface CompileMessage {
   type: 'compile';
   mode: string;
@@ -26,8 +26,10 @@ async function loadPlugin(version: string) {
 async function babelTransform(filename: string, code: string, mode: string, version: string) {
   try {
     const plugin = await loadPlugin(version);
+    const normalizedMode = normalizeCompileMode(mode, version);
+
     const transformedCode = transform(code, {
-      plugins: [[plugin, { mode, hmr: false }]],
+      plugins: [[plugin, { mode: normalizedMode, hmr: false }]],
       presets: ['typescript'],
       filename: `${filename}.tsx`,
     }).code;

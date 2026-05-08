@@ -15,7 +15,7 @@ export class PreviewProxy {
 
     this.pending_cmds = new Map();
 
-    this.handle_event = e => this.handle_repl_message(e);
+    this.handle_event = (e) => this.handle_repl_message(e);
     window.addEventListener('message', this.handle_event, false);
   }
 

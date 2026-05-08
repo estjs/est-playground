@@ -50,7 +50,7 @@ export function Preview() {
     containerRef.value!.append(sandbox);
 
     proxy = new PreviewProxy(sandbox, {
-      on_error: event => {
+      on_error: (event) => {
         const msg = event.value instanceof Error ? event.value.message : event.value;
         if (
           msg.includes('Failed to resolve module specifier') ||
@@ -69,14 +69,14 @@ export function Preview() {
           };
         }
       },
-      on_unhandled_rejection: event => {
+      on_unhandled_rejection: (event) => {
         let error = event.value;
         if (typeof error === 'string') {
           error = { message: error };
         }
         runtimeError.value = `Uncaught (in promise): ${error.message}`;
       },
-      on_console: log => {
+      on_console: (log) => {
         if (log.duplicate) {
           return;
         }
@@ -107,7 +107,7 @@ export function Preview() {
       runtimeError.value = null;
 
       // 0.14 later version use old run code
-      // Logic for version switching: 
+      // Logic for version switching:
       // Versions <= 0.0.14 use old h(...).mount(...)
       // Versions >= 0.0.15 use new createApp(...)
       const isNewVersion =
@@ -163,7 +163,7 @@ export function Preview() {
 
     self.addEventListener(
       'message',
-      message => {
+      (message) => {
         if (message.data.type === 'compile') {
           const data = message.data.value;
           updatePreview(data);
@@ -184,8 +184,6 @@ export function Preview() {
 
   // Re-create sandbox when version changes
   effect(() => {
-    // Access essorVersion.value explicitly to track dependency
-    const v = essorVersion.value;
     if (containerRef.value && editor) {
       createSandbox();
     }
@@ -200,20 +198,24 @@ export function Preview() {
   return (
     <div class="relative h-full w-full">
       {isLoading.value && (
-        <div class="absolute left-0 top-0 z-50 h-full w-full flex flex-col items-center justify-center glass shimmer">
-          <div class="i-carbon-loading animate-spin text-3xl text-[#646cff] mb-2" />
-          <div class="text-[10px] font-black uppercase tracking-[0.2em] text-gradient brightness-125">Compiling</div>
+        <div class="glass shimmer absolute left-0 top-0 z-50 h-full w-full flex flex-col items-center justify-center">
+          <div class="i-carbon-loading mb-2 animate-spin text-3xl text-[#646cff]" />
+          <div class="text-gradient text-[10px] font-black tracking-[0.2em] uppercase brightness-125">
+            Compiling
+          </div>
         </div>
       )}
       <div ref={compiledRef} class="h-50% transition-all"></div>
-      <div class="h-2px bg-base  relative flex items-center justify-center">
-        <div class="px-5 py-2 glass b-1 b-base dark:b-white/20 rounded-full text-[10px] font-black uppercase tracking-[0.25em] shadow-lg brightness-110 hover:scale-105 transition-all cursor-default select-none group">
+      <div class="bg-base relative h-2px flex items-center justify-center">
+        <div class="glass group cursor-default select-none b-1 b-base rounded-full px-5 py-2 text-[10px] font-black tracking-[0.25em] uppercase shadow-lg brightness-110 transition-all hover:scale-105 dark:b-white/20">
           <span class="text-gradient brightness-125">Preview</span>
-          <div class="absolute inset-0 bg-[#646cff] blur-lg opacity-10 group-hover:opacity-20 transition-opacity" />
+          <div class="absolute inset-0 bg-[#646cff] opacity-10 blur-lg transition-opacity group-hover:opacity-20" />
         </div>
       </div>
-      <div ref={containerRef} class="iframe-container mr-14px h-50% transition-all mt-4px"></div>
-      {runtimeError.value && <ErrorDisplay error={runtimeError.value} onClose={() => runtimeError.value = null} />}
+      <div ref={containerRef} class="iframe-container mr-14px mt-4px h-50% transition-all"></div>
+      {runtimeError.value && (
+        <ErrorDisplay error={runtimeError.value} onClose={() => (runtimeError.value = null)} />
+      )}
     </div>
   );
 }

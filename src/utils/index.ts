@@ -1,8 +1,10 @@
-import { computed, signal } from 'essor';
+import { computed, signal, watch } from 'essor';
 import semver from 'semver';
 import { strFromU8, strToU8, unzlibSync, zlibSync } from 'fflate';
 import * as monaco from 'monaco-editor';
 import { isDev } from './config';
+
+// Ensure compileMode falls back to client if SSR is not supported by the version
 
 // Debounce function to limit the rate at which a function can fire
 export function debounce(fn: Function, n = 100) {
@@ -93,9 +95,6 @@ export async function fetchEssorVersions() {
     console.error('Failed to fetch essor versions:', error);
   }
 }
-
-// Ensure compileMode falls back to client if SSR is not supported by the version
-import { watch } from 'essor';
 watch(essorVersion, () => {
   if (!isSSRSupported.value) {
     compileMode.value = 'client';
