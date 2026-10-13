@@ -23,7 +23,7 @@ importers:
         version: 7.28.5(@babel/core@7.29.0)
       '@babel/standalone':
         specifier: ^7.29.4
-        version: 7.29.4
+        version: 7.29.10
       '@babel/types':
         specifier: ^7.29.0
         version: 7.29.0
@@ -201,8 +201,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/standalone@7.29.4':
-    resolution: {integrity: sha512-QuPlodN3HBcX/HcKRz0fkpr8hmqhY+OKwX89h/vBVKuSat5ohvZw4XGNwfF1LtwScmp5ILBAO7puXwJDcMEtJQ==}
+  '@babel/standalone@7.29.10':
+    resolution: {integrity: sha512-Hw4VoSA8lWuYPfYlzfKP3W44F166NEQJbgJRkzZSn1lAqNPq0nVlOEfBKTLckQDs6X3cUcAq2Nh6vopUMvkk3g==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.28.6':
@@ -2910,7 +2910,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/standalone@7.29.4': {}
+  '@babel/standalone@7.29.10': {}
 
   '@babel/template@7.28.6':
     dependencies:
