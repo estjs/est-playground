@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@unocss/reset": "^66.6.8",
-    "essor": "^0.0.16-beta.2"
+    "essor": "^0.0.17"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
