@@ -23,7 +23,7 @@
     "@iconify-json/carbon": "^1.2.20",
     "@types/babel__standalone": "^7.1.9",
     "@types/node": "^25.6.0",
-    "babel-plugin-essor": "^0.0.16-beta.2",
+    "babel-plugin-essor": "^0.0.17",
     "eslint": "^10.3.0",
     "fflate": "^0.8.2",
     "happy-dom": "^20.9.0",
